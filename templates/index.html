@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PokePasta</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+</head>
+
+<body>
+    <div class="window glass active" style="width: 90%; margin: 5em auto">
+        <div class="title-bar">
+            <div class="title-bar-text">Poke!Pasta</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body has-space">
+            <div class="field-row-stacked" style="width: 100%">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="title">Title of the pasta</label>
+                        <input style="width: 100%" type="text" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="paste-text" for="title">Text of the pasta</label>
+                        <textarea id="pasteText" style="resize: vertical; width: 100%" name="paste-text" rows="30"
+                            maxlength="50000" required></textarea>
+                        </textarea>
+                    </div>
+                    <div class="form-group text-center">
+                    </div>
+            </div>
+            <section class="field-row" style="justify-content: flex-end">
+                <button type="submit" class="default">Paste!</button>
+            </section>
+            </form>
+        </div>
+        <div class="status-bar">
+            <p class="status-bar-field">{{ utc_dt }}</p>
+            <p class="status-bar-field"><span id="charCount">0</span>/<span id="maxChars">0</span></p>
+            <p class="status-bar-field">All pastas are deleted after one month!</p>
+        </div>
+    </div>
+    <script>
+        const MAX_LENGTH = 50000;
+        const textarea = document.getElementById('pasteText');
+        const charCount = document.getElementById('charCount');
+        const maxChars = document.getElementById('maxChars');
+        maxChars.textContent = MAX_LENGTH.toLocaleString();
+
+        textarea.addEventListener('input', () => {
+            charCount.textContent = textarea.value.length.toLocaleString();
+        });
+
+    </script>
+</body>
+
+</html>

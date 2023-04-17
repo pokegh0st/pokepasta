@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PokePasta</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+</head>
+
+<body>
+    <div class="window glass active" style="width: 90%; margin: 5em auto">
+        <div class="title-bar">
+            <div class="title-bar-text">{% block title %}{{ pasta.title }}{% endblock %}</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close" onclick="window.location.href='/'"></button>
+            </div>
+        </div>
+        <div class="window-body has-space">
+            <div class="field-row-stacked" style="width: 100%">
+                <div class="form-group">
+                    <textarea style="resize: vertical; width: 100%" name="paste-text" rows="30" readonly>
+                    {{ "\n" + pasta.pasta_text }}
+                    </textarea>
+                </div>
+                <div class="form-group text-center">
+                </div>
+            </div>
+            <section class="field-row" style="justify-content: flex-end">
+                <a href="{{ url_for('index') }}"><button class="default">Ok</button></a>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+flask
+faunadb
+python-dotenv
+pytz
+twofish
+base64
