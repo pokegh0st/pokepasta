@@ -31,7 +31,13 @@
                             maxlength="50000" required></textarea>
                         </textarea>
                     </div>
-                    <div class="form-group text-center">
+                    <div class="form-group">
+                        <input type="checkbox" id="passwordCheckbox">
+                        <label for="passwordCheckbox">Add password protection?</label>
+                    </div>
+                    <div class="field-row-stacked" id="passwordRow" style="display: none;">
+                        <label for="password">Password</label>
+                        <input style="width: 20%" type="text" name="password">
                     </div>
             </div>
             <section class="field-row" style="justify-content: flex-end">
@@ -51,10 +57,22 @@
         const charCount = document.getElementById('charCount');
         const maxChars = document.getElementById('maxChars');
         maxChars.textContent = MAX_LENGTH.toLocaleString();
+        const passwordCheckbox = document.getElementById('passwordCheckbox');
+        const passwordRow = document.getElementById('passwordRow');
+        passwordCheckbox.checked = false;
 
         textarea.addEventListener('input', () => {
             charCount.textContent = textarea.value.length.toLocaleString();
         });
+
+        passwordCheckbox.addEventListener('change', () => {
+            if (passwordCheckbox.checked) {
+                passwordRow.style.display = 'block';
+            } else {
+                passwordRow.style.display = 'none';
+            }
+        });
+
 
     </script>
 </body>

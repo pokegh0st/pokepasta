@@ -23,12 +23,19 @@ def index():
         title = request.form.get("title").strip()
         paste_text = request.form.get("paste-text").strip()
         identifier = token_urlsafe(5)
+        password = request.form.get("password")
+        protected = False
+        if (password != ""):
+            protected = True
+            print(password)
+
         paste = client.query(q.create(q.collection("pastas"), {
             "data": {
                 "pasta_id": identifier,
                 "pasta_text": base64.b64encode(twowish_util.encrypt(paste_text)).decode("ascii"),
                 "title": base64.b64encode(twowish_util.encrypt(title)).decode("ascii"),
-                "date": datetime.now(pytz.UTC)
+                "date": datetime.now(pytz.UTC),
+                "protected": protected
             }
         }))
         return redirect(request.host_url + identifier)
